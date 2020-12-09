@@ -9,6 +9,9 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final Integer REQUEST_CODE_BUSCAR_MAPA = 1000;
+    public static final String ACCION_BUSCAR_COORDENADAS = "BUSCAR_COORDENADAS";
+
     Button btnBuscarAlojamiento;
     Button btnNuevoAlojamiento;
     Button btnVerMapa;
@@ -43,4 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 }

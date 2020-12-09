@@ -6,47 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".FormBuscarAlojamientoActivity">
+    <TextView
+        android:text="BUSCAR PROPIEDADES"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
 
-    <EditText
-        android:id="@+id/txtNombre"
-        android:hint="Nombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></EditText>
-    <EditText
-        android:id="@+id/txtDescripcion"
-        android:hint="Descripcion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></EditText>
-    <EditText
-        android:id="@+id/precio"
-        android:hint="Precio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></EditText>
-    <CheckBox
-        android:id="@+id/poseeInternet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint=" Posee internet"></CheckBox>
-    <Spinner
-        android:id="@+id/cmbTipoPropiedad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
-    <EditText
-        android:id="@+id/capacidad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></EditText>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"></TextView>
         <Button
             android:id="@+id/btnBuscarCoordenadas"
             android:text="Buscar Coordenadas"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"></Button>
-    </LinearLayout>
 
 </LinearLayout>

@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorBotones">#84FFFF</color>
+    <color name="fondoCard">#567FFFE1</color>
+    <color name="texto">#1565C0</color>
+    <dimen name="margen">48dp</dimen>
+    <dimen name="tamanioTitulo">25dp</dimen>
+    <dimen name="tamanioMedio">18dp</dimen>
 </resources>

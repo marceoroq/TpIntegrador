@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private Boolean buscarCoordenadas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Log.d("MAPAS"," CREA ACTIVIDAD: "+ getIntent().getAction());
+        buscarCoordenadas = getIntent().getAction().equals(MainActivity.ACCION_BUSCAR_COORDENADAS);
+        Log.d("MAPAS"," buscarCoordenadas: "+ buscarCoordenadas);
+
     }
+
+
 
     /**
      * Manipulates the map once available.
@@ -81,14 +89,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // tengo el permiso no tengo que chequear ni pedir.
                 Toast.makeText(MapsActivity.this,"YA TENGO EL PERMISO",Toast.LENGTH_LONG).show();
                 Log.d("MAPAS","SI NO TENGO PERMISO");
-                habilitarUbicacion();
+                configurarMapa();
 
             }
         }
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
         //
     }
 
@@ -100,7 +105,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(requestCode==999){
             if(permissions[0].equals(Manifest.permission.ACCESS_FINE_LOCATION) && grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 Toast.makeText(MapsActivity.this,"Me dio el permiso",Toast.LENGTH_LONG).show();
-                    habilitarUbicacion();
+                configurarMapa();
             } else{
                 Toast.makeText(MapsActivity.this,"NOOOO Me dio el permiso",Toast.LENGTH_LONG).show();
 
@@ -110,8 +115,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @SuppressLint("MissingPermission")
-    private void habilitarUbicacion(){
+    private void configurarMapa(){
+        Log.d("MAPAS"," configurarMapa");
+
         mMap.setMyLocationEnabled(true);
 
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                // primero verifico que abrimos el mapa para buscar coordenadas
+                Log.d("MAPAS"," onMapLongClick: "+ buscarCoordenadas);
+
+                if(buscarCoordenadas){
+                    // capturar la coordenada actual
+                    // enviar el resultado a la actividad de buscar para que sepa las coordenadas seleccionadas
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("latitud",0.0f);
+                    returnIntent.putExtra("longitud",0.0f);
+
+                    setResult(MapsActivity.RESULT_OK,returnIntent);
+
+                    finish();
+                }
+            }
+        });
     }
 }
