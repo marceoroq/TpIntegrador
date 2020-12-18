@@ -15,7 +15,20 @@ public class MiDBOpenHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {}
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE ALOJAMIENTO (" +
+                "_ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "NOMBRE TEXT," +
+                "DESCRIPCION TEXT," +
+                "PRECIO REAL," +
+                "HAS_INTERNET INTEGER," +
+                "ALLOW_PETS INTEGER," +
+                "TIPO TEXT," +
+                "CAPACIDAD INTEGER," +
+                "CALIFICACION REAL," +
+                "COOR_LAT REAL," +
+                "COOR_LON REAL)");
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}

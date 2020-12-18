@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,10 +10,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></TextView>
 
-        <Button
-            android:id="@+id/btnBuscarCoordenadas"
-            android:text="Buscar Coordenadas"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"></Button>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Complete los datos para la busqueda" />
+
+    <EditText
+        android:id="@+id/searchByNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nombre Alojamiento"
+        android:inputType="textPersonName" />
+
+    <Switch
+        android:id="@+id/searchByPets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Permite Mascotas" />
+
+    <CheckBox
+        android:id="@+id/searchByInternet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Posee Internet" />
+
+    <Button
+        android:id="@+id/btnBuscarPropiedades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar Propiedades"></Button>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="475dp" />
 
 </LinearLayout>

@@ -31,7 +31,7 @@ public class ListaAlojamientoActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         List<Propiedad> listaPropiedades = new ArrayList<>();
         // specify an adapter (see also next example)
-        mAdapter = new PropiedadesRecycler(listaPropiedades,this);
-        recyclerView.setAdapter(mAdapter);
+        //mAdapter = new PropiedadesRecycler(listaPropiedades,this);
+        //recyclerView.setAdapter(mAdapter);
     }
 }

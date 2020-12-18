@@ -26,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
         btnVerMapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i1 = new Intent(MainActivity.this,MapsActivity.class);
+                Intent i1 = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(i1);
             }
         });
         btnBuscarAlojamiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i1 = new Intent(MainActivity.this,FormBuscarAlojamientoActivity.class);
+                Intent i1 = new Intent(MainActivity.this, FormBuscarAlojamientoActivity.class);
                 startActivity(i1);
             }
         });
@@ -46,7 +46,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }

@@ -28,6 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Boolean buscarCoordenadas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +38,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         Log.d("MAPAS"," CREA ACTIVIDAD: "+ getIntent().getAction());
-        buscarCoordenadas = getIntent().getAction().equals(MainActivity.ACCION_BUSCAR_COORDENADAS);
-        Log.d("MAPAS"," buscarCoordenadas: "+ buscarCoordenadas);
-
+        if (getIntent().getAction() != null) {
+            buscarCoordenadas = getIntent().getAction().equals(MainActivity.ACCION_BUSCAR_COORDENADAS);
+            Log.d("MAPAS", " buscarCoordenadas: " + buscarCoordenadas);
+        }
     }
-
-
 
     /**
      * Manipulates the map once available.
@@ -88,9 +88,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } else {
                 // tengo el permiso no tengo que chequear ni pedir.
                 Toast.makeText(MapsActivity.this,"YA TENGO EL PERMISO",Toast.LENGTH_LONG).show();
-                Log.d("MAPAS","SI NO TENGO PERMISO");
+                Log.d("MAPAS","YA TENGO PERMISO");
                 configurarMapa();
-
             }
         }
 
@@ -108,9 +107,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 configurarMapa();
             } else{
                 Toast.makeText(MapsActivity.this,"NOOOO Me dio el permiso",Toast.LENGTH_LONG).show();
-
             }
-
         }
     }
 
@@ -130,10 +127,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     // capturar la coordenada actual
                     // enviar el resultado a la actividad de buscar para que sepa las coordenadas seleccionadas
                     Intent returnIntent = new Intent();
-                    returnIntent.putExtra("latitud",0.0f);
-                    returnIntent.putExtra("longitud",0.0f);
 
-                    setResult(MapsActivity.RESULT_OK,returnIntent);
+                    returnIntent.putExtra("latitud", latLng.latitude);
+                    returnIntent.putExtra("longitud", latLng.longitude);
+
+                    setResult(MapsActivity.RESULT_OK, returnIntent);
 
                     finish();
                 }
