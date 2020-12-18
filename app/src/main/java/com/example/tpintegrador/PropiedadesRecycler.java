@@ -1,17 +1,23 @@
 package com.example.tpintegrador;
 
 import android.app.Activity;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tpintegrador.modelo.Propiedad;
@@ -74,14 +80,29 @@ public class PropiedadesRecycler extends RecyclerView.Adapter<PropiedadesRecycle
             });
 
             btnReservar.setOnClickListener(new View.OnClickListener() {
+
+                @RequiresApi(api = Build.VERSION_CODES.O)
                 @Override
                 public void onClick(View v) {
-                    // TODO: mandar un mensaje para reservar.
+
+                    NotificationChannel channel = new NotificationChannel(
+                            "CANAL_NOTIFICATION_ID",
+                            "Nombre Canal",
+                            NotificationManager.IMPORTANCE_HIGH);
+
+                    NotificationManager notificationManager = v.getContext().getSystemService(NotificationManager.class);
+                    notificationManager.createNotificationChannel(channel);
+
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(v.getContext(), channel.getId())
+                            .setSmallIcon(R.drawable.ic_launcher_foreground)
+                            .setContentTitle("Reserva Realizada con Exito")
+                            .setContentText("Su reserva en " + titulo.getText().toString() + " ha sido realizada con exito. Lo esperamos!");
+
+                    notificationManager.notify(99, mBuilder.build());
                 }
             });
         }
     }
-
 
     // Create new views (invoked by the layout manager)
     @Override
